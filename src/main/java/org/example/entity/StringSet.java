@@ -25,15 +25,20 @@ public class StringSet {
             "is held in the British Library. Macmillan published a facsimile of the manuscript in 1886.";
 
     public static Set<String> findUniqueWords() {
-        // Noktalama işaretlerini temizle
-        String cleanedText = TEXT.replaceAll("[.,!?\"—]", "").toLowerCase();
+        // Noktalama işaretlerini temizle, ama tireyi koru
+        String cleanedText = TEXT.replaceAll("[.,!?\"]", "").toLowerCase();
         // Kelimelere ayır
         String[] words = cleanedText.split("\\s+");
         // Unique kelimeleri bir TreeSet'e ekle (otomatik sıralama için)
         Set<String> uniqueWords = new TreeSet<>();
-        Collections.addAll(uniqueWords, words);
-        // Boş string'leri çıkar
-        uniqueWords.remove("");
+        for (String word : words) {
+            // Sayıları çıkar, tireyi koru
+            if (!word.matches(".*\\d+.*") && !word.isEmpty()) {
+                // "macdonald's" ve benzeri kelimelerdeki kesme işaretini kaldır
+                word = word.replaceAll("['’]", "");
+                uniqueWords.add(word);
+            }
+        }
         return uniqueWords;
     }
 }

@@ -48,9 +48,9 @@ public class Main {
 
         // Birden fazla çalışana atanmış task'lar (kesişim)
         System.out.println("\nBirden fazla çalışana atanmış task'lar:");
-        Set<Task> annBobIntersect = taskData.getIntersect(annsTasks, bobsTasks);
-        Set<Task> annCarolIntersect = taskData.getIntersect(annsTasks, carolsTasks);
-        Set<Task> bobCarolIntersect = taskData.getIntersect(bobsTasks, carolsTasks);
+        Set<Task> annBobIntersect = taskData.getIntersection(annsTasks, bobsTasks);
+        Set<Task> annCarolIntersect = taskData.getIntersection(annsTasks, carolsTasks);
+        Set<Task> bobCarolIntersect = taskData.getIntersection(bobsTasks, carolsTasks);
         Set<Task> duplicates = taskData.getUnion(Arrays.asList(annBobIntersect, annCarolIntersect, bobCarolIntersect));
         System.out.println(duplicates);
 
